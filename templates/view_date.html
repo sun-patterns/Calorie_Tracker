@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('index') }}">My Calorie Tracker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="active"><a href="{{ url_for('view_date') }}">View Dates</a></li>
+            <li><a href="{{ url_for('food') }}">Add Food Item</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav> 
+
+
+    <div class="container theme-showcase col-sm-6 col-sm-offset-3" role="main">
+
+      <div class="row">
+        <div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Select Date</h3>
+            </div>
+
+            <div class="panel-body">
+
+              <form method="POST" action="{{ url_for('view_date') }}">
+                <div class="form-group">
+                  <select class="form-control" name="date-select">
+                    {% for dates in date_result %}
+                    <option value={{ dates.entry_date }}>{{ dates.entry_date }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Done</button>
+
+              </form>
+
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
